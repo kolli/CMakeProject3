@@ -77,12 +77,15 @@ double calMinTimeCurHikers(vector<double>& curBridgeHikerTime, bool sideIndicato
 					continue;
 				for (int j = i + 1; j < endIdx; ++j) {
 					if (mask & (1 << j)) {
+						//Max Time to cross from side 0 to side 1.
 						double maxVal = max(curBridgeHikerTime[i], curBridgeHikerTime[j]);
 						int ival = 1 << i;
 						int jval = 1 << j;
+						//Set these hikers to 0 in the map
 						int maskNewVal = ((mask) ^ ival) ^ jval;
 						//Max val taken for i and j combination. Now flip sideIndicator and calulcate the other side.
-						maxVal += calMinTimeCurHikers(curBridgeHikerTime, !sideIndicator, endIdx, mask ^ (1 << i) ^(1<<j), hikerMemo);
+						maxVal += calMinTimeCurHikers(curBridgeHikerTime, !sideIndicator, endIdx, maskNewVal, hikerMemo);
+						//Calculate final minval and store in retval.
 						retVal = min(maxVal, retVal);
 					}
 				}
