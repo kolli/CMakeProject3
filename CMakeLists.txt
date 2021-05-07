@@ -7,4 +7,4 @@ project ("CMakeProject3")
 
 # Include sub-projects.
 add_subdirectory ("CMakeProject3")
-add_subdirectory ("yaml-cpp-master")
+#add_subdirectory ("yaml-cpp-master")

@@ -1,0 +1,31 @@
+Input: 
+Bridge Len.
+New Hikers.
+
+Output:
+Fastest way to send all hikers from Side 0 to Side 1.
+
+This problem can be solved by 
+1. Side 0 to Side 1: Try all combinations of 2 items. 
+2. Side 1 to Side 0: Pick the minimum on Side 1 and add that to the val. This is the person bringing the torch back.
+3. After considering all values. The lowest is the fastest crossing of the bridge.
+
+
+General Algorithm.
+1. Recursively try sending all combinations of 2 hikers.
+2. Send the fastest hiker back with torch. 
+3. Continue till each combination is done and compare the lowest value.
+4. To speed up the recursive process add memoization. Once calculated values need not be calculated again.
+
+Variables:
+Mask: Keeps track of who all are there on Side 0.
+EndMask: Calculated from Mask. The remaining are on Side 1.
+sideIndicator: Indicates which side has to be calculated. Side 0 or Side 1.
+hikerSpeedMap: Map to store hiker number  to hiker speed
+hikerMemo: stores the calculated subproblems values.
+
+Functions:
+addHikerSpeedMap: Adds Hiker and his/her speed to map.
+calCurBridgeTimes: Calculates the time taken by all hikers individually to cross the current bridge.
+countRemPeople: Count number of bits set in the mask. The mask indicates how many people are left to cross.
+calMinCurHikers: Takes all hikers time array, mask and recursively calculates all combinations of hikers crossing+lowest hiker coming back from 1-0.
